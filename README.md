@@ -49,7 +49,3 @@ To `Run` the game just do:
 ```bash
 $ python game.py
 ```
-
-# JavaScript 🟨:
-
-<p align="justify">With javascript it is basically a code that draws and erases the snake along the way.</p>
