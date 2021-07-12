@@ -63,8 +63,6 @@ To run the application just execute:
 $ python run.py
 ```
 
-<h1 align="center">Buy Me a Coffe ☕:</h1>
-
-![COFFE](https://raw.githubusercontent.com/GuiAnacleto/PasswordGenerator/main/README/coffe.gif)
+<h3 align="left">Buy Me a Coffe ☕:</h3>
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/guianacleto)
