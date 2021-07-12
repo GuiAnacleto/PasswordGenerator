@@ -6,14 +6,260 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
-    <link rel="stylesheet" href="../static/index.css">
 </head>
+
+<style>
+    .body {
+        font-family: sans-serif;
+    }
+    
+    .container {
+        width: 1000px;
+        height: 700px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: #5E17EB;
+    }
+    
+    .capa {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+    }
+    
+    .button {
+        position: fixed;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        margin: 20px;
+    }
+    
+    .button a {
+        color: white;
+        font-family: Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 36px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #02475E;
+        display: block;
+        position: relative;
+        padding: 20px 40px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        text-shadow: 0px 1px 0px #000;
+        filter: dropshadow(color=#000, offx=0px, offy=1px);
+        -webkit-box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #687980;
+        -moz-box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #687980;
+        box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #687980;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+    
+    .button a:active {
+        top: 10px;
+        background-color: #02475E;
+        -webkit-box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #687980;
+        -moz-box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #687980;
+        box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #687980;
+    }
+    
+    .button:after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        padding: 4px;
+        position: absolute;
+        bottom: -15px;
+        left: -4px;
+        z-index: -1;
+        background-color: #2B1800;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+    
+    @font-face {
+        font-family: Clip;
+        src: url("https://acupoftee.github.io/fonts/Clip.ttf");
+    }
+    
+    .sign {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 50%;
+        letter-spacing: 2;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "sans-serif";
+        text-transform: uppercase;
+        font-size: 6em;
+        color: #ffe6ff;
+        text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd, -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+        animation: shine 2s forwards, flicker 3s infinite;
+    }
+    
+    @keyframes blink {
+        0%,
+        22%,
+        36%,
+        75% {
+            color: #ffe6ff;
+            text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd, -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+        }
+        28%,
+        33% {
+            color: #ff65bd;
+            text-shadow: none;
+        }
+        82%,
+        97% {
+            color: #ff2483;
+            text-shadow: none;
+        }
+    }
+    
+    .flicker {
+        animation: shine 2s forwards, blink 3s 2s infinite;
+    }
+    
+    .fast-flicker {
+        animation: shine 2s forwards, blink 10s 1s infinite;
+    }
+    
+    @keyframes shine {
+        0% {
+            color: #6b1839;
+            text-shadow: none;
+        }
+        100% {
+            color: #ffe6ff;
+            text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd, -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+        }
+    }
+    
+    @keyframes flicker {
+        from {
+            opacity: 1;
+        }
+        4% {
+            opacity: 0.9;
+        }
+        6% {
+            opacity: 0.85;
+        }
+        8% {
+            opacity: 0.95;
+        }
+        10% {
+            opacity: 0.9;
+        }
+        11% {
+            opacity: 0.922;
+        }
+        12% {
+            opacity: 0.9;
+        }
+        14% {
+            opacity: 0.95;
+        }
+        16% {
+            opacity: 0.98;
+        }
+        17% {
+            opacity: 0.9;
+        }
+        19% {
+            opacity: 0.93;
+        }
+        20% {
+            opacity: 0.99;
+        }
+        24% {
+            opacity: 1;
+        }
+        26% {
+            opacity: 0.94;
+        }
+        28% {
+            opacity: 0.98;
+        }
+        37% {
+            opacity: 0.93;
+        }
+        38% {
+            opacity: 0.5;
+        }
+        39% {
+            opacity: 0.96;
+        }
+        42% {
+            opacity: 1;
+        }
+        44% {
+            opacity: 0.97;
+        }
+        46% {
+            opacity: 0.94;
+        }
+        56% {
+            opacity: 0.9;
+        }
+        58% {
+            opacity: 0.9;
+        }
+        60% {
+            opacity: 0.99;
+        }
+        68% {
+            opacity: 1;
+        }
+        70% {
+            opacity: 0.9;
+        }
+        72% {
+            opacity: 0.95;
+        }
+        93% {
+            opacity: 0.93;
+        }
+        95% {
+            opacity: 0.95;
+        }
+        97% {
+            opacity: 0.93;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
 
 <body>
     <form id="container" class="container">
-        <input>
-        <button>
-    </form>
+        <img id="capa" class="capa" src="{{ url_for('static', filename='Capa.gif') }}" />
+
+        <div class="sign">
+            <span class="fast-flicker">{{password[0:2]}}</span> {{password[2:4]}} <span class="flicker">{{password[4:6]}}</span>{{password[6:8]}}
+        </div>
+
+        <div ontouchstart="">
+            <div class="button">
+                <a href="#">GENERATE</a>
+            </div>
+        </div>
 
 </body>
 
